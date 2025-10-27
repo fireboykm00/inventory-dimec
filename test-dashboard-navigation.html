@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Navigation Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f5f5f5;
+        }
+        .test-card {
+            background: white;
+            padding: 20px;
+            margin: 10px 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border: 2px solid transparent;
+        }
+        .test-card:hover {
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            transform: scale(1.02);
+        }
+        .test-card.blue:hover { border-color: #3b82f6; }
+        .test-card.green:hover { border-color: #10b981; }
+        .test-card.red:hover { border-color: #ef4444; }
+        .icon {
+            font-size: 24px;
+            margin-bottom: 8px;
+        }
+        .title {
+            font-weight: bold;
+            margin-bottom: 4px;
+        }
+        .description {
+            color: #666;
+            font-size: 14px;
+        }
+        .status {
+            margin-top: 20px;
+            padding: 10px;
+            background: #e0f2fe;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <h1>🧾 DIMEC Inventory - Dashboard Navigation Test</h1>
+    <p>Click on the cards below to test navigation functionality:</p>
+    
+    <div class="test-card blue" onclick="testNavigation('products')">
+        <div class="icon">📦</div>
+        <div class="title">Manage Products</div>
+        <div class="description">Add, edit, or view products</div>
+    </div>
+    
+    <div class="test-card green" onclick="testNavigation('issuance')">
+        <div class="icon">📄</div>
+        <div class="title">Record Issuance</div>
+        <div class="description">Issue items to departments</div>
+    </div>
+    
+    <div class="test-card red" onclick="testNavigation('reports')">
+        <div class="icon">📊</div>
+        <div class="title">View Reports</div>
+        <div class="description">Generate inventory reports</div>
+    </div>
+    
+    <div class="status" id="status">
+        Status: Ready for testing. Click on any card above.
+    </div>
+
+    <script>
+        function testNavigation(page) {
+            console.log(`Testing navigation to: ${page}`);
+            const status = document.getElementById('status');
+            
+            // Simulate navigation
+            status.innerHTML = `✅ Navigation to <strong>/${page}</strong> triggered successfully!<br>
+                               Check browser console for details.<br>
+                               In the actual app, this would navigate to the ${page} page.`;
+            
+            // Change status color based on page
+            if (page === 'products') {
+                status.style.backgroundColor = '#dbeafe';
+                status.style.borderColor = '#3b82f6';
+            } else if (page === 'issuance') {
+                status.style.backgroundColor = '#d1fae5';
+                status.style.borderColor = '#10b981';
+            } else if (page === 'reports') {
+                status.style.backgroundColor = '#fee2e2';
+                status.style.borderColor = '#ef4444';
+            }
+            
+            // Log to console (mimicking React behavior)
+            console.log(`Navigating to ${page}...`);
+            console.log(`In React app: navigate('/${page}')`);
+        }
+        
+        // Add keyboard support
+        document.addEventListener('keydown', function(e) {
+            if (e.key >= '1' && e.key <= '3') {
+                const pages = ['products', 'issuance', 'reports'];
+                testNavigation(pages[parseInt(e.key) - 1]);
+            }
+        });
+        
+        console.log('Dashboard Navigation Test loaded');
+        console.log('Press 1, 2, or 3 to test navigation via keyboard');
+    </script>
+</body>
+</html>
